@@ -1,27 +1,24 @@
 from flask import Flask, render_template
+import os
 
 app = Flask(__name__)
 
-# 🏠 Homepage
 @app.route('/')
 def home():
     return render_template('index.html')
 
-# 🖼️ Gallery page
 @app.route('/gallery')
 def gallery():
     return render_template('gallery.html')
 
-# 🔗 Links page
 @app.route('/links')
 def links():
     return render_template('links.html')
 
-# 👤 About page
 @app.route('/about')
 def about():
     return render_template('about.html')
 
-# 🚀 Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
